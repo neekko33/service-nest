@@ -11,10 +11,10 @@ import { OcrModule } from './module/ocr/ocr.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '212.64.78.155',
+      host: '',
       port: 3306,
       username: 'root',
-      password: 'Dj.249575',
+      password: '',
       database: 'mwwow',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
