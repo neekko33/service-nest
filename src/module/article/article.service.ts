@@ -9,7 +9,9 @@ export class ArticleService {
   constructor(
     @InjectRepository(Article)
     private readonly articleRepository: Repository<Article>,
-  ) {}
+  ) {
+  }
+
   // 新增文章
   async create(a: CreateArticleDto): Promise<void> {
     const { typeId, title, content, introduce, addTime, userId } = a;
@@ -65,7 +67,7 @@ export class ArticleService {
   }
 
   // 查找全部文章
-  async findAll(pageNum: number, pageSize: number): Promise<[Article[],number]> {
+  async findAll(pageNum: number, pageSize: number): Promise<[Article[], number]> {
     try {
       return await this.articleRepository
         .createQueryBuilder('a')
@@ -105,7 +107,7 @@ export class ArticleService {
   }
 
   // 通过类型查找文章
-  async findType(id: string): Promise<Article[]> {
+  async findType(id: string, pageNum: number, pageSize: number): Promise<[Article[], number]> {
     try {
       return await this.articleRepository
         .createQueryBuilder('a')
@@ -113,6 +115,8 @@ export class ArticleService {
         .leftJoin('a.type', 't')
         .where('a.typeId=:id', { id })
         .orderBy('a.id', 'DESC')
+        .skip(pageSize * (pageNum - 1))
+        .take(pageSize)
         .select([
           'a.id',
           'a.title',
@@ -123,7 +127,7 @@ export class ArticleService {
           't.id',
           't.typeName',
         ])
-        .getMany();
+        .getManyAndCount();
     } catch (e) {
       throw new HttpException(e, HttpStatus.INTERNAL_SERVER_ERROR);
     }

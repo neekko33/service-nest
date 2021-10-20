@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Type } from './type.entity';
 import { Repository } from 'typeorm';
+import Any = jasmine.Any;
 
 @Injectable()
 export class TypeService {
@@ -35,6 +36,11 @@ export class TypeService {
   }
   // 查找全部类型
   async findAll(): Promise<Type[]> {
-    return await this.typeRepository.find();
+    // return await this.typeRepository.find();
+    return await this.typeRepository
+      .createQueryBuilder('t')
+      .leftJoin('t.articles','a')
+      .select(['t.id','t.typeName','a.title'])
+      .getMany();
   }
 }

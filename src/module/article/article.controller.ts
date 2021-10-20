@@ -43,7 +43,11 @@ export class ArticleController {
         count: result[1],
       };
     } else {
-      return this.articleService.findType(typeId);
+      const result = await this.articleService.findType(typeId,pageNum,pageSize);
+      return {
+        articles: result[0],
+        count: result[1]
+      }
     }
   }
   @Get(':id')

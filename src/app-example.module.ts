@@ -1,3 +1,4 @@
+// 文件名为 app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './module/user/user.module';
@@ -11,11 +12,11 @@ import { OcrModule } from './module/ocr/ocr.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '212.64.78.155',
+      host: '',
       port: 3306,
-      username: 'root',
-      password: 'Dj.249575',
-      database: 'mwwow',
+      username: '',
+      password: '',
+      database: '',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
