@@ -1,0 +1,9 @@
+{
+  "apps": [
+      {
+        "name": "blog-service",
+        "script": "node",
+        "args": "dist/main.js"
+      }
+    ]
+}
