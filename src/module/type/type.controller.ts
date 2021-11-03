@@ -12,7 +12,7 @@ import {
 import { TypeService } from './type.service';
 import { Type } from './type.entity';
 
-@Controller('/api/v5/type')
+@Controller('/type')
 export class TypeController {
   constructor(private readonly typeService: TypeService) {}
   @Post()

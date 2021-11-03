@@ -12,7 +12,7 @@ import { ArticleService } from './article.service';
 import { CreateArticleDto, ArticleListDto } from './create-article.dto';
 import { Article } from './article.entity';
 
-@Controller('/api/v5/article')
+@Controller('/article')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
   @Post()

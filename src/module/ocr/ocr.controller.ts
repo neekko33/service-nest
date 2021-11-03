@@ -9,7 +9,7 @@ import * as tencentcloud from 'tencentcloud-sdk-nodejs';
 
 @Controller()
 export class OcrController {
-  @Post('/api/v5/ocr')
+  @Post('/ocr')
   @UseInterceptors(FilesInterceptor('files'))
   upload(@UploadedFiles() files): any {
     console.log(JSON.stringify(files));

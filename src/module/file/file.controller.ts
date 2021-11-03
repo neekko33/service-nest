@@ -8,7 +8,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller()
 export class FileController {
-  @Post('/api/v5/file')
+  @Post('/file')
   @UseInterceptors(FileInterceptor('file'))
   upload(@UploadedFile() file) {
     return {
